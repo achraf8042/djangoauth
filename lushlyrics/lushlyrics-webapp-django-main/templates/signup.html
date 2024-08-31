@@ -1,0 +1,142 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://cdn.discordapp.com/icons/715958380556058684/773d6583cd1d7aef41e701783d353aef.webp?size=128" type="image/x-icon">
+<meta name="description" itemprop="description"
+        content="Play your playlists and favourites tracks, albums, and artists" />
+    <meta name="keywords"
+        content="convert, convert playlists, transfer, syncing, smart links, free, apple music, streaming services" />
+    <title>Youttify</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .signup_body {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            width: 100%;
+            box-sizing: border-box;
+            height: 100vh;
+        }
+        
+        .login_form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .login_form input[type="text"],
+        .login_form input[type="email"],
+        .login_form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        
+        .login_form input[type="text"]:focus,
+        .login_form input[type="email"]:focus,
+        .login_form input[type="password"]:focus {
+            border-color: #6c63ff;
+            box-shadow: 0 0 5px rgba(108, 99, 255, 0.5);
+            outline: none;
+        }
+        
+        .btn_log_in {
+            background-color: #6c63ff;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn_log_in:hover {
+            background-color: #554dff;
+        }
+        
+        .divider {
+            margin: 20px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .label {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .label a {
+            color: #6c63ff;
+            text-decoration: none;
+        }
+        
+        .label a:hover {
+            text-decoration: underline;
+        }
+        
+        .center-align {
+            text-align: center;
+        }
+        
+        .error-message {
+            color: #f79862;
+            padding-bottom: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+    </style>
+
+</head>
+
+
+<body>
+
+        <div class="signup_body">
+            <form class="login_form" method='POST' enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ regestrationform.username|as_crispy_field }}
+                <br>
+                {{regestrationform.email |as_crispy_field}}
+                <br>
+                {{regestrationform.password1 | as_crispy_field }}
+                <br>
+                {{regestrationform.password2 | as_crispy_field}}
+
+                {% if not case %}
+                <span style="color:#f79862;
+                             padding-bottom:20px;
+                             text-align:center;">Username or password invalid</span>
+                {% endif %}
+          
+
+            <button class='btn btn_log_in' type="submit">Sign up</button>
+            <div class="divider"></div>
+            <p class='label center-align'>Already have an account? <a href="{% url  'login' %}">Log in</a>.</p>
+        </form>
+    </div>
+
+
+
+</html>
